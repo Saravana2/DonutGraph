@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <donut_graph>
-    <canvas>
-        <canvas_x>100</canvas_x>
-        <canvas_y>100</canvas_y>
-        <canvas_width>900</canvas_width>
-        <canvas_height>900</canvas_height>
-        <canvas_transparency>80</canvas_transparency>
-    </canvas>
     <donut_width>200</donut_width>
     <donut_fields>
         <field>
@@ -28,6 +21,11 @@
             <field_name>IOT</field_name>
             <field_value>400</field_value>
             <field_color>#FFBCBF</field_color>
+        </field>
+        <field>
+            <field_name>Apple</field_name>
+            <field_value>500</field_value>
+            <field_color>#E7E247</field_color>
         </field>
     </donut_fields>
 </donut_graph>

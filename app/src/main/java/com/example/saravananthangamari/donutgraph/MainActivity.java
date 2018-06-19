@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
             Node donut_graph = doc.getDocumentElement();
             if (donut_graph.getNodeType() == Node.ELEMENT_NODE) {
-                Node canvas=doc.getElementsByTagName("canvas").item(0);
+               /* Node canvas=doc.getElementsByTagName("canvas").item(0);
                 if(canvas.getNodeType()==Node.ELEMENT_NODE){
                     Element ele=(Element)canvas;
                     canvasMarginLeft= Integer.parseInt(getValue("canvas_x",ele));
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                     canvasHeight=Integer.parseInt(getValue("canvas_height",ele));
                     canvasTransparency=(Integer.parseInt(getValue("canvas_transparency",ele))*255)/100;
                    Log.i("canvas transparency", String.valueOf(canvasTransparency));
-                }
+                }*/
 
                 donutWidth=Integer.parseInt(doc.getElementsByTagName("donut_width").item(0).getTextContent());
 
@@ -87,21 +87,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        DonutGraphData donutGraphData=new DonutGraphData(canvasWidth,canvasHeight,donutWidth,percentage,fieldname,colors);
+        DonutGraphData donutGraphData=new DonutGraphData(donutWidth,percentage,fieldname,colors);
 
-        RelativeLayout r=(RelativeLayout)findViewById(R.id.rl);
-        DonutView view=new DonutView(this);
-        RelativeLayout.LayoutParams rl=new RelativeLayout.LayoutParams(canvasWidth,canvasHeight);
-        rl.setMargins(canvasMarginLeft,canvasMarginTop,0,0);
-        view.setLayoutParams(rl);
-        r.addView(view);
-        view.setBackgroundColor(Color.BLUE);
-        Drawable d=view.getBackground();
-        d.setAlpha(255-canvasTransparency);
+        //RelativeLayout r=(RelativeLayout)findViewById(R.id.rl);
+        DonutView view=(DonutView)findViewById(R.id.donut_graph);
         view.setDonutGraphValues(donutGraphData);
         view.start(percentage.size());
-
-
     }
 
     private static String getValue(String tag, Element element) {

@@ -6,18 +6,13 @@ import java.io.Serializable;
 import java.util.List;
 
 public class DonutGraphData implements Serializable {
-
-    int canvasWidth;
-    int canvasHeight;
     int donutWidth;
     List<Float> percentage;
     List<String> fieldName;
     String imageURL;
     List<Integer> colors;
 
-    public DonutGraphData(int canvasWidth, int canvasHeight, int donutWidth, List<Float> percentage, List<String> fieldName,List<Integer> colors) {
-        this.canvasWidth = canvasWidth;
-        this.canvasHeight = canvasHeight;
+    public DonutGraphData(int donutWidth, List<Float> percentage, List<String> fieldName,List<Integer> colors) {
         this.donutWidth = donutWidth;
         this.percentage = percentage;
         this.fieldName = fieldName;
@@ -25,22 +20,6 @@ public class DonutGraphData implements Serializable {
     }
     public DonutGraphData(){
 
-    }
-
-    public float getCanvasWidth() {
-        return canvasWidth;
-    }
-
-    public void setCanvasWidth(int canvasWidth) {
-        this.canvasWidth = canvasWidth;
-    }
-
-    public float getCanvasHeight() {
-        return canvasHeight;
-    }
-
-    public void setCanvasHeight(int canvasHeight) {
-        this.canvasHeight = canvasHeight;
     }
 
     public int getDonutWidth() {
@@ -74,12 +53,6 @@ public class DonutGraphData implements Serializable {
     public void setColors(List<Integer> colors) {
         this.colors = colors;
     }
-
-
-
-
-
-
 
 
 }
