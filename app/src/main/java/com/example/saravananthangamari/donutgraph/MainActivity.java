@@ -54,16 +54,6 @@ public class MainActivity extends AppCompatActivity {
 
             Node donut_graph = doc.getDocumentElement();
             if (donut_graph.getNodeType() == Node.ELEMENT_NODE) {
-               /* Node canvas=doc.getElementsByTagName("canvas").item(0);
-                if(canvas.getNodeType()==Node.ELEMENT_NODE){
-                    Element ele=(Element)canvas;
-                    canvasMarginLeft= Integer.parseInt(getValue("canvas_x",ele));
-                    canvasMarginTop=Integer.parseInt(getValue("canvas_y",ele));
-                    canvasWidth=Integer.parseInt(getValue("canvas_width",ele));
-                    canvasHeight=Integer.parseInt(getValue("canvas_height",ele));
-                    canvasTransparency=(Integer.parseInt(getValue("canvas_transparency",ele))*255)/100;
-                   Log.i("canvas transparency", String.valueOf(canvasTransparency));
-                }*/
 
                 donutWidth=Integer.parseInt(doc.getElementsByTagName("donut_width").item(0).getTextContent());
 
@@ -89,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
 
         DonutGraphData donutGraphData=new DonutGraphData(donutWidth,percentage,fieldname,colors);
 
-        //RelativeLayout r=(RelativeLayout)findViewById(R.id.rl);
         DonutView view=(DonutView)findViewById(R.id.donut_graph);
         view.setDonutGraphValues(donutGraphData);
         view.start(percentage.size());

@@ -8,26 +8,30 @@ import android.graphics.Bitmap;
 import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PathMeasure;
 import android.graphics.RectF;
+import android.graphics.Shader;
+import android.graphics.SweepGradient;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.saravananthangamari.donutgraph.model.DonutGraphData;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class DonutView extends View {
-    private static List<Integer> listAngles;
     Paint paint,textPaint,shadowPaint;
     RectF rect;
-    int midx,midy,radius,innerRadius;
+    int midx,midy,radius;
     float currentStartArcPosition=270f;
     float currentSweep;
     int no_of_iteration=0;
@@ -84,7 +88,6 @@ public class DonutView extends View {
                 currentSweep = (data.getPercentage().get(i) / totalValues) * 360;
                 float currentArc = currentStartArcPosition;
                 rect.set(midx - radius +(data.getDonutWidth()/2f), midy - radius+(data.getDonutWidth()/2f) , midx + radius-(data.getDonutWidth()/2f), midy + radius-(data.getDonutWidth()/2f));
-                //canvas.drawRect(rect,shadowPaint);
                 for (float sweep = 1; sweep <= currentSweep; sweep++) {
                     if(sweepCount>=no_of_iteration){
                         break;
@@ -97,19 +100,11 @@ public class DonutView extends View {
                 }
 
                 if(currentStartArcPosition+currentSweep<=no_of_iteration){
-                    rect.set(midx - radius +(data.getDonutWidth()), midy - radius+(data.getDonutWidth()) , midx + radius-(data.getDonutWidth()), midy + radius-(data.getDonutWidth()));
-                    shadowPaint.setColor(Color.TRANSPARENT);
-                    shadowPaint.setStyle(Paint.Style.FILL);
-                    // shadowPaint.setStrokeWidth(data.getDonutWidth());
-                    shadowPaint.setShadowLayer(50,10,10,Color.WHITE);
-                    setLayerType(LAYER_TYPE_SOFTWARE,null);
-                    canvas.drawArc(rect,currentStartArcPosition,currentSweep,false,shadowPaint);
-
 
                     Path p1=new Path();
                     rect.set(midx-radius+(data.getDonutWidth()/1.5f),
                             midy-radius+(data.getDonutWidth()/1.5f),midx+radius-(data.getDonutWidth()/1.5f),midy+radius-(data.getDonutWidth()/1.5f));
-                    // canvas.drawRect(rect,shadowPaint);
+
                     drawArcLocal(p1,currentSweep,currentStartArcPosition,currentSweep);
                     PathMeasure pm=new PathMeasure(p1,false);
 
@@ -135,13 +130,6 @@ public void textSizeCalcualtor(String field,PathMeasure pm,int size){
     }
 }
 
-@Override
-public boolean onTouchEvent(MotionEvent me){
-
-
-
-return true;
-}
 
     public void drawArcLocal(Path path,float currentSweep1,float startAngle,float sweepAngle){
         if(currentSweep1==360){

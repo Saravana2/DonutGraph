@@ -9,7 +9,6 @@ public class DonutGraphData implements Serializable {
     int donutWidth;
     List<Float> percentage;
     List<String> fieldName;
-    String imageURL;
     List<Integer> colors;
 
     public DonutGraphData(int donutWidth, List<Float> percentage, List<String> fieldName,List<Integer> colors) {
@@ -17,9 +16,6 @@ public class DonutGraphData implements Serializable {
         this.percentage = percentage;
         this.fieldName = fieldName;
         this.colors=colors;
-    }
-    public DonutGraphData(){
-
     }
 
     public int getDonutWidth() {
